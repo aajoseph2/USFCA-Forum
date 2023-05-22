@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="collapse navbar-collapse">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link text-white" href="/">Home</a>
+          <a class="nav-item nav-link text-white" href="/newpost">Post My Thoughts</a>
+          <a class="nav-item nav-link text-white" href="/forum">People's Thoughts</a>
+          <a class="nav-item nav-link text-white" href="/logout">Logout</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-4">
+      <div class="jumbotron bg-transparent text-white">
+        <h1 class="display-4">Your Profile</h1>
+        <p class="lead">Username: {{user.username}}</p>
+
+        <!-- User's posts -->
+        {{#unless posts}}
+          <p class="no-posts-message">No posts have been written yet.</p>
+        {{/unless}}
+        <hr/>
+        {{#each posts}}
+          <div class="post">
+            <h2>{{this.title}}</h2>
+            <p class= 'profileMessages'>My Message: {{this.body}}</p>
+            <form action="/posts/delete/{{this._id}}" method="POST">
+              <button type="submit">Delete</button>
+            </form>
+          </div>
+          <hr />
+        {{/each}}
+      </div>
+      <form action="/deleteaccount" method="POST">
+        <button type="submit">Delete My Account</button>
+      </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+

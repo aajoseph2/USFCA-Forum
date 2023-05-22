@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forum Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="collapse navbar-collapse">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link text-white" href="/" role="button">Home</a>
+          <a class="nav-item nav-link text-white" href="/profile">My Account</a>
+          <a class="nav-item nav-link text-white" href="/logout">Logout</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-4">
+      <div class="jumbotron bg-transparent">
+        <h1 class="display-4">True Voices</h1>
+        <p class="lead">Below are the anonymous messages posted by students:</p>
+        <a class="btn btn-light btn-lg" href="/newpost" role="button">Create New Post</a>
+      </div>
+
+      <div class="container">
+        {{#unless posts}}
+          <p class="no-posts-message">No posts have been written yet.</p>
+        {{/unless}}
+        
+        {{#each posts}}
+          <div class="card mb-4">
+            <div class="card-body">
+              <p class="card-text" id="MesTitle"><strong>{{this.title}}</strong></p>
+              <p class="card-text" id="MesCon"><strong>{{this.author.username}}:</strong> {{this.body}}</p>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
